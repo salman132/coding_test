@@ -21,6 +21,17 @@ use Bulkly\RssAutoPost;
 use Bulkly\BufferPosting;
 use GuzzleHttp\Exception\ClientException;
 
+Route::get('salman',function (){
+    dd(bcrypt(123456));
+
+});
+
+Route::get('/clear',function(){
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('route:clear');
+});
+
 
 Route::get('/user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
@@ -71,6 +82,7 @@ Route::get('/group-test/{id}', function(Request $request, $id){
 
 
 Auth::routes();
+
 Route::post('stripe/webhook', '\Bulkly\Http\Controllers\WebhookController@handleWebhook');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/buffer/change/{buffer_id}', 'HomeController@bufferChange')->name('bufferChange');
@@ -219,6 +231,8 @@ Route::post('/close-account/', function(Request $request){
         $a = $userModel->where('id', $id)->delete();
 
 
+
+
         return redirect('login');
     }
     else {
@@ -248,6 +262,7 @@ Route::post('/close-account/', function(Request $request){
         }
 
         \Illuminate\Support\Facades\Auth::guard('web')->logout();
+
         return redirect('login');
     }
 });
@@ -459,4 +474,6 @@ Route::get('/sendPostTest', 'CronController@sendPostTest');
 
 Route::get('/app/bulk.ly/free/{code}','Auth\RegisterController@validUserRegistrationForm')->name('bulk.free-signup');
 Route::post('/app/bulk.ly/free/signUp/{code}','Auth\RegisterController@validUserRegistration');
+
+Route::get('/history','HistoryController@index');
 

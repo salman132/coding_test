@@ -35,6 +35,9 @@ class LoginController extends Controller
 
     public function loginNow(Request $request){
 
+
+
+
         $input = $request->input();
         $validator = Validator::make($input,[
                 'email' => 'required|email|exists:users,email',

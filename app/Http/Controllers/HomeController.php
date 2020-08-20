@@ -45,6 +45,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
+
+
+
         $campaign_cookie = \Cookie::get('campaign');
         $campaign_email = \Cookie::get('campaign_email');
         if (!Auth::check() && $campaign_cookie && $campaign_email) {

@@ -10,7 +10,7 @@ try {
 
     require('bootstrap');
     require('bootstrap-sass');
-    require('./bootstrap');
+    // require('./bootstrap');
     require('./jquery-ui');
     require('./Chart');
     require('./bulk');

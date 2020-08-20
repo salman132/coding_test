@@ -10,8 +10,6 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,36 +34,33 @@
 			<div class="collapse navbar-collapse" id="navbar">
 
 				<ul class="nav navbar-nav navbar-right">
-					@if(auth()->guest())
-						@if(!Request::is('auth/login'))
-							<li><a href="{{ url('/login') }}">Login</a></li>
-						@endif
-						@if(!Request::is('auth/register'))
-							<li><a href="{{ url('/register') }}">Register</a></li>
-						@endif
-					@else
+					<?php if(auth()->guest()): ?>
+						<?php if(!Request::is('auth/login')): ?>
+							<li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
+						<?php endif; ?>
+						<?php if(!Request::is('auth/register')): ?>
+							<li><a href="<?php echo e(url('/register')); ?>">Register</a></li>
+						<?php endif; ?>
+					<?php else: ?>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo e(auth()->user()->name); ?> <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+								<li><a href="<?php echo e(url('/auth/logout')); ?>">Logout</a></li>
 							</ul>
 						</li>
-					@endif
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	@yield('content')
+	<?php echo $__env->yieldContent('content'); ?>
 
 
 
 	<!-- Scripts -->
-	<script src="{{ asset('app.js') }}"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-	@yield('script')
 </body>
 </html>
