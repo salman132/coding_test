@@ -18,3 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('history',"HistoryController@history");
+
+Route::get('history/custom_search',"HistoryController@search");
+
+Route::get('all_group',"HistoryController@all_group");
+
+Route::get('group_by/{id}',"HistoryController@group_by");
+Route::get('group_name/{name}',"HistoryController@group_name");
+Route::get('by_date',"HistoryController@by_date");

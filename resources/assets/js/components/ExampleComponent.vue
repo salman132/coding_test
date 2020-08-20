@@ -1,7 +1,31 @@
 <template>
     <div class="history">
 
-        <table class="table table-hover">
+        <form>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" name="group_name" @keyup="nameBy($event)" v-model="group_name" class="form-control" placeholder="Group Name">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" name="date" v-model="date" @focusout="byDate($event)" class="form-control datepicker" id="datetimepicker" placeholder="Date">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <select name="group_type"  class="form-control"  @change="getGroupBy($event)">
+                        <option value="0">All Group</option>
+                        <option v-for="(group , index) in groups" :value="group.id"   :key="index">{{ group.name }}</option>
+
+                    </select>
+                </div>
+
+
+            </div>
+        </form>
+
+        <table class="table table-hover" style="padding-top: 20px">
             <thead>
             <tr>
                 <th>Group Name</th>
@@ -54,12 +78,18 @@
                 histories: [],
                 history_id: '',
                 pagination: {},
+                groups:[],
+                group_name: '',
+                date: '',
+                group_id : '',
+
 
             }
 
         },
         created() {
             this.getHistories();
+            this.getGroups();
 
         },
         methods:{
@@ -84,6 +114,48 @@
                     prev_page: data.prev_page_url
                 };
                 this.pagination = pagination;
+            },
+            getGroups:function () {
+                axios.get('api/all_group').then(response =>{
+                    this.groups = response.data;
+
+                }).catch(error =>{
+                    console.log(error)
+                });
+            },
+            getGroupBy:function (event) {
+                let val = event.target.value;
+                  axios.get('api/group_by/'+val).then(response =>{
+                      this.histories = response.data.data;
+                      let v = this;
+                      v.makePagination(response.data);
+                  }).catch(error =>{
+                      console.log(error)
+                  })
+            },
+
+            nameBy:function (event) {
+                let val = event.target.value;
+
+                axios.get('api/group_name/'+val).then(response =>{
+                    this.histories = response.data.data;
+                    let v = this;
+                    v.makePagination(response.data);
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+            byDate:function (event) {
+                let val = event.target.value;
+
+                axios.get('api/by_date/?date='+val).then(response =>{
+                    this.histories = response.data.data;
+                    let v = this;
+                    v.makePagination(response.data);
+                }).catch(error =>{
+                    console.log(error)
+                })
+
             }
 
         }
