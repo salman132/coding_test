@@ -14479,7 +14479,7 @@ window.Vue = __webpack_require__(44);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(40));
+Vue.component('history-component', __webpack_require__(40));
 
 var app = new Vue({
   el: '#app'
@@ -38373,9 +38373,9 @@ var Component = __webpack_require__(41)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\bulk.ly\\resources\\assets\\js\\components\\ExampleComponent.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\bulk.ly\\resources\\assets\\js\\components\\History.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ExampleComponent.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] History.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -38384,9 +38384,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ae46e44", Component.options)
+    hotAPI.createRecord("data-v-04fab2da", Component.options)
   } else {
-    hotAPI.reload("data-v-2ae46e44", Component.options)
+    hotAPI.reload("data-v-04fab2da", Component.options)
   }
 })()}
 
@@ -38597,7 +38597,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2ae46e44", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-04fab2da", module.exports)
   }
 }
 

@@ -17,7 +17,7 @@
 
 
                                         <div id="app">
-                                            <example-component></example-component>
+                                            <history-component></history-component>
                                         </div>
 
 
